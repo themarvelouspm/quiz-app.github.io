@@ -119,6 +119,7 @@ $('.next-btn').click(function(){
                     populate(i);
                     console.log("correct answers =", correctAnswers);
             } else {
+                checkCorrect(i);
                 var activeQuestion = $('.is-active');
                     activeQuestion.removeClass('is-active').empty();
 
@@ -132,8 +133,8 @@ $('.next-btn').click(function(){
                 var resultContainer = document.createElement ('div');
                 resultContainer.classList.add('result-container')
                 $('.question-container').append(resultContainer);
-                    $(`<h3>Congratulations! Your Score is ${correctAnswers}/${numberOfQ}</h3>`).appendTo('.result-container');
-                    $(`<h3>👏 You have passed!</h3>`).appendTo('.result-container');
+                    $(`<h4>Congratulations! Your Score is ${correctAnswers}/${numberOfQ}</h4>`).appendTo('.result-container');
+                    $(`<h4>👏 You have passed!</h4>`).appendTo('.result-container');
                     $('.question-container').show();
                     $('.restart-btn').show();
 

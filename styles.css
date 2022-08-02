@@ -20,8 +20,8 @@
 }
 .answer-div:hover {
     cursor: pointer;
-    background-color: gray;
-
+    background-color: rgb(87, 135, 224);
+    color : white;
 }
 
 .nav-btn-container{
