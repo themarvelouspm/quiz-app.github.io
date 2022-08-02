@@ -4,7 +4,11 @@
     margin: 0 auto;
 }
 
-
+.outer-container img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .answer-div {
     display: inline-block;
     margin-bottom: 1px;
