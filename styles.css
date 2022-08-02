@@ -1,0 +1,66 @@
+.outer-container {
+    width: 80%;
+    height: 50%;
+    margin: 0 auto;
+}
+
+
+.answer-div {
+    display: inline-block;
+    margin-bottom: 1px;
+    padding : 5px 0px;
+    width: 95%;
+    background-color: #f1f1f1;
+
+}
+.answer-div:hover {
+    cursor: pointer;
+    background-color: gray;
+
+}
+
+.nav-btn-container{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    
+
+}
+.back-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    color: white;
+    background-color: rgb(173, 32, 32);
+    border: none;
+}
+
+.next-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    color: white;
+    background-color: rgb(14, 172, 14);
+    border: none;
+}
+
+.error-message {
+    color: red;
+    padding-top: 15px;
+    margin: auto;
+}
+
+.restart-btn {
+    padding: 10px 20px;
+    color: white;
+    background-color: rgb(118, 88, 230);
+    border: none;
+}
+
+.question-container {
+    display: none;
+
+}
+
+.is-active {
+    display: block;
+
+}

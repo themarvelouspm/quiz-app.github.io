@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dynamic Quiz App</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css" >
+</head>
+<body>
+
+    <div class="outer-container">
+      
+        <h2>eCommerce Quiz</h2>
+            <p class="question-index"></p>
+            <div class="question-container is-active">
+
+            </div>
+
+        <div class="nav-btn-container">
+            <button class="back-btn" type="submit">< Back </button>
+            <button class="next-btn" type="submit">Next ></button>
+            <p class="error-message">Please select one option</p>
+            <button class="restart-btn" type="submit" onclick="window.location.href='Quiz app updated.html';" >Restart Quiz</button>
+        </div>
+       
+
+    </div>
+    
+<script>
+
+
+const questions = [{
+    id : 1,
+    correct: 3,
+    question : "Which of the following is not a real eCommerce platform?",
+    answers: ['shopify', 
+    'wooCommerce', 
+    'shopCommerce', 
+    'bigCommerce'],
+  },
+  {
+    id : 2,
+    correct: 4,
+    question : "If Shopify is so good, why are Shopify developers necessary?",
+    answers: ['To save time on things like store setups and migrations', 
+    'To extend the limited design options and functionalities of themes with custom code',
+    'To provide support with a deep understanding of how the platform works and what its limitations are',
+    'All of the above'],
+  },
+  {
+    id : 3,
+    correct: 4,
+    question : "Which of the following is true about developers?",
+    answers: ['They are extremely well paid', 
+    'There is a high demand for them', 
+    'They need to know web development, the platform itself, and the liquid template language', 
+    'All of the above'],
+  },
+
+];
+
+var backBtn = $('.back-btn');
+var restartBtn = $('.restart-btn');
+var nextBtn = $('.next-btn');
+restartBtn.hide();
+backBtn.hide();
+
+var errorMsg = $('.error-message');
+errorMsg.hide()
+var i = 0;
+var numberOfQ = questions.length;
+var correctAnswers = 0;
+var previousAnswer = false;
+
+populate(i);
+deselectAnswers();
+
+
+$('.back-btn').click(function(){
+    errorMsg.hide();
+    if (i<2){
+        correctAnswers=0;
+        $('.back-btn').hide();
+        i--;
+        populate(i);
+        console.log("correct answers =", correctAnswers);
+    }
+        else {
+            if (previousAnswer){
+        correctAnswers--;}
+        else{}
+        i--;
+        populate(i);
+        console.log("correct answers =", correctAnswers);
+    }
+    });
+
+
+$('.next-btn').click(function(){
+    var options = document.querySelectorAll('input[name="options"]');
+    var uncheckedOption=0;
+    for (var option of options ) {
+
+        if (option.checked) {
+
+            if (i< numberOfQ-1){
+                errorMsg.hide();
+                $('.back-btn').show();
+                    checkCorrect(i);
+                    i++;
+                    populate(i);
+                    console.log("correct answers =", correctAnswers);
+            } else {
+                var activeQuestion = $('.is-active');
+                    activeQuestion.removeClass('is-active').empty();
+
+                    $('.question-index').hide();
+                    $('.back-btn').hide();
+                    $('.next-btn').hide();
+                    errorMsg.hide()
+             
+                
+
+                var resultContainer = document.createElement ('div');
+                resultContainer.classList.add('result-container')
+                $('.question-container').append(resultContainer);
+                    $(`<h2>Congratulations! Your Score is ${correctAnswers}/${numberOfQ}</h2>`).appendTo('.result-container');
+                    $(`<h1>👏 You have passed!</h1>`).appendTo('.result-container');
+                    $('.question-container').show();
+                    $('.restart-btn').show();
+
+            } } else {
+                    uncheckedOption++;
+                    if (uncheckedOption==4){
+                        errorMsg.show();
+                    console.log(option.checked)
+                    console.log('bad');
+                    } else {}
+            }}
+
+
+});
+
+
+
+function populate(i) { 
+var answerIndex=0;
+$('.question-index').text(`Question ${questions[i].id} of ${numberOfQ}`);
+var questionContainer = document.querySelector('.question-container');
+questionContainer.innerHTML = `
+
+<p class="question-title">${questions[i].question}</p>
+`;
+questions[i].answers.forEach(element => {
+    answerIndex++;
+   // console.log ("Here is the answer index= ",answerIndex);
+    var answerDiv = document.createElement('div')
+    answerDiv.classList.add('answer-div');
+    answerDiv.innerHTML = `
+    <input class ="option" type="radio" name="options" id="${answerIndex}">
+    <label for="${element}">${element}</label><br>
+    `;
+    questionContainer.appendChild(answerDiv)
+
+});
+
+}
+
+
+function deselectAnswers(){
+    var answers = document.getElementsByTagName('input');
+    for(var i=0;i<answers.length;i++)
+      answers[i].checked = false;
+}
+
+function checkCorrect (i) {
+    var options = document.querySelectorAll('input[name="options"]');
+    for (var option of options ) {
+        if (option.checked) {
+     /*   console.log ("your selected option", typeof(parseInt(option.id)));
+        console.log ("the right option was", typeof(questions[i].correct))*/
+        if (parseInt(option.id) === questions[i].correct) {
+            console.log ("correct")
+            previousAnswer = true;
+            correctAnswers++;
+        } else {
+            console.log("wrong")
+            previousAnswer = false;}
+
+        } else {}
+    } 
+}
+
+        
+</script>
+    
+</body>
+</html>
