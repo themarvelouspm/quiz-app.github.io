@@ -1,3 +1,12 @@
+label{
+    width: 100%;
+}
+#app-logo {
+    max-width: 90%;
+    width:400px;
+    height:200px;
+}
+
 .outer-container {
     width: 80%;
     height: 50%;

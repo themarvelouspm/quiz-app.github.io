@@ -14,7 +14,7 @@
 <body>
 
     <div class="outer-container">
-        <img src="askagainlogo.png" alt="logo" width="400" height="200">
+        <img id="app-logo" src="askagainlogo.png" alt="logo" >
       
         <h2>eCommerce Quiz</h2>
             <p class="question-index"></p>
@@ -167,8 +167,10 @@ questions[i].answers.forEach(element => {
     var answerDiv = document.createElement('div')
     answerDiv.classList.add('answer-div');
     answerDiv.innerHTML = `
+    <label>
     <input class ="option" type="radio" name="options" id="${answerIndex}">
-    <label for="${element}">${element}</label><br>
+    ${element}
+    </label><br>
     `;
     questionContainer.appendChild(answerDiv)
 
